@@ -19,6 +19,11 @@ axiosInstance.interceptors.request.use(
 );
 
 export const API_PATHS = {
+  AUTH: {
+    REGISTER: "api/auth/register",
+    LOGIN: "api/auth/login",
+    GET_PROFILE: "api/auth/profile",
+  },
   USER: {
     ADD_USER: "api/users/add",
     GET_USERS: `api/users/all-users`,
