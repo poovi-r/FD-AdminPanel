@@ -1,5 +1,5 @@
 import express from "express";
-import { getDashboardSummary } from "../controllers/dashboardController.js";
+import { getDashboardSummary } from "../Controllers/dashboardController.js";
 import { admin, protect } from "../Middlewares/authMiddleware.js";
 
 
