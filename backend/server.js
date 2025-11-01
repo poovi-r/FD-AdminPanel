@@ -7,8 +7,11 @@ import categoryRoutes from "./Routes/categoryRoutes.js";
 import productRoutes from "./Routes/productRoutes.js";
 import orderRoutes from "./Routes/orderRoutes.js";
 import dashboardRoutes from "./Routes/dashboardRoutes.js";
+import authRoutes from "./Routes/authRoutes.js";
 
 dotenv.config();
+console.log("Loaded ADMIN_CODE:", process.env.ADMIN_CODE);
+
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -29,6 +32,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/auth", authRoutes);
 
 
 app.listen(PORT, () => {
