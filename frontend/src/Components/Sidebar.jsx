@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaShoppingBag, FaBoxOpen, FaFolderOpen, FaUsers, FaSignOutAlt } from 'react-icons/fa';
 
-const Sidebar = ({ isOpen, onClose }) => {
+const Sidebar = ({ isOpen, onClose, onLogout }) => {
   const menuItems = [
     { name: 'Dashboard', path: '/', icon: FaHome },
     { name: 'Orders', path: '/orders', icon: FaShoppingBag },
@@ -24,13 +24,12 @@ const Sidebar = ({ isOpen, onClose }) => {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 lg:static lg:inset-0 transition-transform duration-300 ease-out border-r border-gray-200 lg:shadow-lg`}
       >
-        <div className="flex items-center justify-center h-16 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white shadow-lg">
-          <img
-            src="/logo.png" // Replace with your professional logo path (e.g., SVG or PNG)
-            alt="FoodAdmin"
-            className="h-8 w-auto drop-shadow-md"
-          />
-        </div>
+  <div className="flex flex-col items-center justify-center h-20 bg-blue-600 text-white">
+  <h1 className="text-center leading-tight tracking-wide">
+    <span className="block text-lg font-semibold">Food Delivery</span>
+    <span className="block text-xl font-bold">Admin</span>
+  </h1>
+</div>
         <nav className="mt-6 px-3">
           <ul className="space-y-1">
             {menuItems.map((item) => {
@@ -52,7 +51,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         </nav>
         <div className="absolute bottom-4 left-4 w-56">
           <button
-            onClick={onClose}
+            onClick={onLogout}
             className="w-full flex items-center px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50/80 rounded-xl transition-all duration-200 font-medium border border-gray-200 hover:border-gray-300 hover:shadow-sm"
           >
             <FaSignOutAlt className="w-4 h-4 mr-3 text-gray-500" />

@@ -1,4 +1,3 @@
-// CategoryList.jsx (Main Page)
 import React, { useState, useEffect } from 'react';
 import axiosInstance, { API_PATHS } from '../Utils/apiPaths.js';
 import CategoryListTable from '../Components/Category-components/CategoryListTable.jsx';
@@ -40,7 +39,7 @@ const CategoryList = () => {
       try {
         const response = await axiosInstance.delete(API_PATHS.CATEGORY.DELETE_CATEGORY(id));
         if (response.data.success) {
-          fetchCategories(); // Refresh
+          fetchCategories();
         }
       } catch (err) {
         alert(err.response?.data?.message || 'Failed to delete');

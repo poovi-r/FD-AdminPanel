@@ -1,4 +1,3 @@
-// UsersList.jsx (Main Page)
 import React, { useState, useEffect } from 'react';
 import axiosInstance, { API_PATHS } from '../Utils/apiPaths';
 import UserFormModal from '../Components/User-components/UserFormModal';
@@ -36,29 +35,29 @@ const UsersList = () => {
   };
 
   const handleDelete = async (id) => {
-    console.log('Delete clicked for user ID:', id); // Debug log
+    console.log('Delete clicked for user ID:', id);
     if (window.confirm('Delete this user?')) {
       try {
-        console.log('Sending delete request for:', id); // Debug log
+        console.log('Sending delete request for:', id);
         const response = await axiosInstance.delete(API_PATHS.USER.DELETE_USER(id));
-        console.log('Delete response:', response.data); // Debug log
+        console.log('Delete response:', response.data);
         if (response.data.success) {
-          fetchUsers(); // Refresh
+          fetchUsers();
         } else {
           alert(response.data.message || 'Failed to delete user');
         }
       } catch (err) {
-        console.error('Delete error:', err); // Debug log
-        console.error('Full error response:', err.response); // More debug
+        console.error('Delete error:', err);
+        console.error('Full error response:', err.response);
         alert(err.response?.data?.message || 'Failed to delete user');
       }
     } else {
-      console.log('Delete cancelled by user'); // Debug log
+      console.log('Delete cancelled by user');
     }
   };
 
   const handleEdit = (user) => {
-    console.log('Edit clicked for user:', user); // Debug log
+    console.log('Edit clicked for user:', user);
     setEditingUser(user);
     setFormData({ name: user.name, email: user.email, mobile: user.mobile });
     setShowForm(true);
@@ -88,10 +87,10 @@ const UsersList = () => {
     setFormError('');
     setFormSuccess('');
     try {
-      console.log('Submitting form for user:', formData, editingUser ? 'update' : 'add'); // Debug log
+      console.log('Submitting form for user:', formData, editingUser ? 'update' : 'add');
       if (editingUser) {
         const response = await axiosInstance.put(API_PATHS.USER.UPDATE_USER(editingUser._id), formData);
-        console.log('Update response:', response.data); // Debug log
+        console.log('Update response:', response.data);
         if (response.data.success) {
           setFormSuccess('User updated successfully!');
           fetchUsers();
@@ -101,7 +100,7 @@ const UsersList = () => {
         }
       } else {
         const response = await axiosInstance.post(API_PATHS.USER.ADD_USER, formData);
-        console.log('Add response:', response.data); // Debug log
+        console.log('Add response:', response.data);
         if (response.data.success) {
           setFormSuccess('User added successfully!');
           fetchUsers();
@@ -113,7 +112,7 @@ const UsersList = () => {
         }
       }
     } catch (err) {
-      console.error('Form submit error:', err); // Debug log
+      console.error('Form submit error:', err);
       setFormError(err.response?.data?.message || 'An error occurred');
     } finally {
       setFormLoading(false);

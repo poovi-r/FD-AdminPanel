@@ -1,4 +1,3 @@
-// StatsGrid.jsx
 import React from 'react';
 
 const StatsGrid = ({ dashboardData, deliveredRevenue }) => {

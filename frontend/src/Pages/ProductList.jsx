@@ -1,4 +1,3 @@
-// ProductList.jsx (Main Page)
 import React, { useState, useEffect } from 'react';
 import axiosInstance, { API_PATHS } from '../Utils/apiPaths.js';
 import ProductListTable from '../Components/Product-components/ProductListTable.jsx';
@@ -58,7 +57,7 @@ const ProductList = () => {
       try {
         const response = await axiosInstance.delete(API_PATHS.PRODUCT.DELETE_PRODUCT(id));
         if (response.data.success) {
-          fetchProducts(); // Refresh
+          fetchProducts();
         }
       } catch (err) {
         alert(err.response?.data?.message || 'Failed to delete');

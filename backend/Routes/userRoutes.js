@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.use(protect, admin);
 
-
 router.get("/all-users", getUsers);
 router.post("/add", createUser);
 router.put("/update/:id", updateUser);

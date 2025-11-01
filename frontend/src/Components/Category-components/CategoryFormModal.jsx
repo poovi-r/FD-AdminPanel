@@ -1,4 +1,3 @@
-// CategoryFormModal.jsx
 import React from 'react';
 
 const CategoryFormModal = ({ 

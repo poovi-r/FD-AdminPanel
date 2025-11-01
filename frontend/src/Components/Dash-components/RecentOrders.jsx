@@ -1,4 +1,3 @@
-// RecentOrders.jsx
 import React from 'react';
 
 const RecentOrders = ({ recentOrders, onViewAll }) => {

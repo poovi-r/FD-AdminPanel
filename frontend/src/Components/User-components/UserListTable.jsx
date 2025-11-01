@@ -1,4 +1,3 @@
-// UserListTable.jsx
 import React from 'react';
 
 const UserListTable = ({ users, onEdit, onDelete, onAddUser }) => {

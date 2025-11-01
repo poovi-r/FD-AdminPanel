@@ -1,4 +1,3 @@
-// Dashboard.jsx (Main Page)
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance, { API_PATHS } from '../Utils/apiPaths.js';
@@ -37,7 +36,6 @@ const Dashboard = () => {
       const response = await axiosInstance.get(API_PATHS.ORDER.GET_ORDERS);
       if (response.data.success) {
         const fullOrders = response.data.orders;
-        // Compute delivered revenue
         const calculatedDeliveredRevenue = fullOrders.reduce((sum, order) => {
           if (order.status === 'Delivered') {
             return sum + order.totalAmount;
@@ -45,7 +43,6 @@ const Dashboard = () => {
           return sum;
         }, 0);
         setDeliveredRevenue(calculatedDeliveredRevenue);
-        // Sort by createdAt desc and take first 5 for recent
         const sortedOrders = fullOrders
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 5);

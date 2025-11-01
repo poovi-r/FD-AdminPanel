@@ -1,4 +1,3 @@
-// ProductListTable.jsx
 import React from 'react';
 
 const ProductListTable = ({ products, onEdit, onDelete, onAddProduct }) => {

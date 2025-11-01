@@ -1,4 +1,3 @@
-// OrdersList.jsx (Main Page)
 import React, { useState, useEffect } from 'react';
 import axiosInstance, { API_PATHS } from '../Utils/apiPaths.js';
 import OrderFormModal from '../Components/Order-components/OrderFormModal.jsx';
@@ -6,8 +5,8 @@ import OrderTable from '../Components/Order-components/OrderTable.jsx';
 
 const OrdersList = () => {
   const [orders, setOrders] = useState([]);
-  const [users, setUsers] = useState([]); // For form
-  const [products, setProducts] = useState([]); // For form
+  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showNewOrderForm, setShowNewOrderForm] = useState(false);
@@ -61,16 +60,16 @@ const OrdersList = () => {
 
   const handleUpdateStatus = async (orderId, status) => {
     try {
-      console.log('Updating status for order:', orderId, 'to:', status); // Debug log
+      console.log('Updating status for order:', orderId, 'to:', status);
       const response = await axiosInstance.put(API_PATHS.ORDER.UPDATE_ORDER(orderId), { status });
-      console.log('Update response:', response.data); // Debug log
+      console.log('Update response:', response.data);
       if (response.data.success) {
-        fetchOrders(); // Refresh
+        fetchOrders();
       } else {
         alert(response.data.message || 'Failed to update status');
       }
     } catch (err) {
-      console.error('Update error:', err); // Debug log
+      console.error('Update error:', err);
       alert(err.response?.data?.message || 'Failed to update status');
     }
   };
@@ -78,16 +77,16 @@ const OrdersList = () => {
   const handleCancel = async (orderId) => {
     if (window.confirm('Cancel this order?')) {
       try {
-        console.log('Cancelling order:', orderId); // Debug log
+        console.log('Cancelling order:', orderId);
         const response = await axiosInstance.put(API_PATHS.ORDER.CANCEL_ORDER(orderId));
-        console.log('Cancel response:', response.data); // Debug log
+        console.log('Cancel response:', response.data);
         if (response.data.success) {
-          fetchOrders(); // Refresh
+          fetchOrders();
         } else {
           alert(response.data.message || 'Failed to cancel');
         }
       } catch (err) {
-        console.error('Cancel error:', err); // Debug log
+        console.error('Cancel error:', err);
         alert(err.response?.data?.message || 'Failed to cancel');
       }
     }
@@ -98,7 +97,6 @@ const OrdersList = () => {
     if (name === 'products') {
       const selected = Array.from(e.target.selectedOptions, option => option.value);
       setFormData({ ...formData, products: selected });
-      // Recalculate total (assuming 1 quantity per product)
       const total = selected.reduce((sum, prodId) => {
         const prod = products.find(p => p._id === prodId);
         return sum + (prod ? prod.price : 0);
@@ -115,9 +113,9 @@ const OrdersList = () => {
     setFormError('');
     setFormSuccess('');
     try {
-      console.log('Creating order:', formData); // Debug log
+      console.log('Creating order:', formData);
       const response = await axiosInstance.post(API_PATHS.ORDER.ADD_ORDER, formData);
-      console.log('Create response:', response.data); // Debug log
+      console.log('Create response:', response.data);
       if (response.data.success) {
         setFormSuccess('Order created successfully!');
         fetchOrders();
@@ -126,7 +124,7 @@ const OrdersList = () => {
         setFormError(response.data.message);
       }
     } catch (err) {
-      console.error('Create error:', err); // Debug log
+      console.error('Create error:', err);
       setFormError(err.response?.data?.message || 'Failed to create order');
     } finally {
       setFormLoading(false);

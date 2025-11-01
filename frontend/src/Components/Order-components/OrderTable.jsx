@@ -1,4 +1,3 @@
-// OrderTable.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -58,13 +57,7 @@ const OrderTable = ({ orders, onUpdateStatus, onCancel, onNewOrder }) => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(order.createdAt).toLocaleDateString()}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <Link 
-                    to={`/orders/${order._id}`}
-                    className="text-blue-600 hover:text-blue-900 mr-3 font-medium transition-colors duration-200"
-                  >
-                    View
-                  </Link>
-                  <select
+                                   <select
                     value={order.status}
                     onChange={(e) => onUpdateStatus(order._id, e.target.value)}
                     className="text-sm border border-gray-300 rounded-md px-2 py-1 mr-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
