@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: "https://fd-admin-backend.onrender.com/",
+  baseURL: "http://localhost:5000/",
   withCredentials: true,
 });
 
